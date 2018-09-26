@@ -182,6 +182,7 @@ module.exports = {
                       options: {
                         importLoaders: 1,
                         minimize: true,
+                        modules: true,
                         sourceMap: shouldUseSourceMap,
                       },
                     },
@@ -211,6 +212,23 @@ module.exports = {
               )
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+            test: /\.less$/,
+            exclude: [/node_modules/],
+            use: [
+                require.resolve('style-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    modules: true,
+                    localIdentName: '[name]__[local]'
+                  },
+                },
+                {
+                  loader: require.resolve('less-loader'), // compiles Less to CSS
+                },
+            ],
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
