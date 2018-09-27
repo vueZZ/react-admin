@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { BackTop } from 'antd';
+import styles from './login.less'
 
-import login from './login.less';
-
-class App extends Component {
+class Blank extends Component {
   render() {
     return (
-      <div className={login.layout}>
-        <div className={login.content}>
-          <div className={login.title}>
-            Ant Design
-          </div>
-          <div className={login.form}>
+      <div className={styles.layout}>
+        <div className={styles.content}>
+          <div className={styles.title}>Ant Design</div>
+          <div className={styles.form}>
             {this.props.children}
           </div>
         </div>
@@ -21,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Blank;
