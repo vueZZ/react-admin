@@ -8,6 +8,17 @@ class LoginForm extends Component {
   state = {
     loginLoading: false
   }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState({ loginLoading: true })
+    this.props.form.validateFields().then(() => {
+      console.log(1)
+    }).catch(er => {
+      console.log(er)
+    })
+    // this.loginLoading = true
+    // console.log(this)
+  }
   render () {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -37,7 +48,7 @@ class LoginForm extends Component {
             <a href="" className={styles['form-forgot']}>忘记密码？</a>
           </div>
           <FormItem>
-            <Button type="primary" onClick={this.handleSubmit} loading={this.state.loginLoading} className={styles['form-button']}>
+            <Button type="primary" htmlType="submit" loading={this.state.loginLoading} className={styles['form-button']}>
               登录
             </Button>
             Or <a href="">注册账号</a>
@@ -46,13 +57,8 @@ class LoginForm extends Component {
       </Login>
     )
   }
-  handleSubmit = () => {
-    this.setState({ loginLoading: true })
-    // this.loginLoading = true
-    console.log(this)
-  }
 }
 
-const WrappedNormalLoginForm = Form.create()(LoginForm);
+const UserLoginForm = Form.create()(LoginForm);
 
-export default WrappedNormalLoginForm
+export default UserLoginForm
